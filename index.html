@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercedes-Benz | Luxury Collection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo" id="home-link">Mercedes-Benz</a>
+    <nav>
+      <a href="#catalog" id="catalog-link">Koleksi</a>
+      <a href="#transaction" id="transaction-link">Transaksi</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <p class="eyebrow">THE BEST OR NOTHING</p>
+      <h1>Temukan Mercedes-Benz Impian Anda</h1>
+      <p>Perpaduan kemewahan, performa, dan teknologi modern.</p>
+      <a href="#catalog" class="primary-button">Jelajahi Koleksi</a>
+    </section>
+
+    <section class="catalog section" id="catalog">
+      <div class="section-heading">
+        <p class="eyebrow">OUR COLLECTION</p>
+        <h2>Koleksi Mercedes-Benz</h2>
+        <p>Pilih kendaraan yang sesuai dengan gaya Anda.</p>
+      </div>
+
+      <div class="car-grid" id="car-grid"></div>
+    </section>
+
+    <section class="transaction section hidden" id="transaction">
+      <div class="section-heading">
+        <p class="eyebrow">YOUR NEXT JOURNEY</p>
+        <h2>Formulir Pemesanan</h2>
+        <p>Lengkapi data berikut untuk konsultasi atau pemesanan.</p>
+      </div>
+
+      <div class="transaction-layout">
+        <div class="selected-car" id="selected-car">
+          <img id="summary-image" src="" alt="Mobil pilihan">
+          <div class="selected-car-content">
+            <p class="eyebrow">MOBIL PILIHAN</p>
+            <h3 id="summary-car"></h3>
+            <p id="summary-description"></p>
+            <p class="price" id="summary-price"></p>
+          </div>
+        </div>
+
+        <form id="transaction-form">
+          <label for="buyer-name">Nama Lengkap</label>
+          <input type="text" id="buyer-name" required placeholder="Masukkan nama Anda">
+
+          <label for="buyer-email">Email</label>
+          <input type="email" id="buyer-email" required placeholder="nama@email.com">
+
+          <label for="buyer-phone">Nomor Telepon</label>
+          <input type="tel" id="buyer-phone" required placeholder="08xxxxxxxxxx">
+
+          <label for="car-choice">Pilih Kendaraan</label>
+          <select id="car-choice" required></select>
+
+          <label for="order-type">Jenis Layanan</label>
+          <select id="order-type" required>
+            <option value="Konsultasi">Konsultasi kendaraan</option>
+            <option value="Test Drive">Permintaan test drive</option>
+            <option value="Pemesanan">Pemesanan kendaraan</option>
+          </select>
+
+          <label for="payment-method">Preferensi Pembayaran</label>
+          <select id="payment-method" required>
+            <option value="Belum ditentukan">Belum ditentukan</option>
+            <option value="Tunai">Tunai</option>
+            <option value="Kredit">Kredit</option>
+          </select>
+
+          <button type="submit" class="primary-button full-button">
+            Kirim Permintaan
+          </button>
+
+          <p class="form-note">
+            Formulir ini merupakan simulasi dan tidak mengirim data ke server.
+          </p>
+          <p id="transaction-feedback" role="status"></p>
+          <button type="button" id="back-button" class="secondary-button">
+            Kembali ke Koleksi
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Mercedes-Benz Luxury Collection</p>
+    <p>Experience elegance. Drive excellence.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
