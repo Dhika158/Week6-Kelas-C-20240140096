@@ -4,102 +4,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercedes-Benz | Luxury Collection</title>
+  <title>Mercedes-Benz Store | Premium Cars</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header class="navbar">
-    <a href="#" class="logo" id="home-link">Mercedes-Benz</a>
+    <a href="#" class="logo">MERCEDES<span>-BENZ</span></a>
     <nav>
-      <a href="#catalog" id="catalog-link">Koleksi</a>
-      <a href="#transaction" id="transaction-link">Transaksi</a>
+      <a href="#home">Beranda</a>
+      <a href="#catalog">Katalog</a>
+      <a href="#booking">Pemesanan</a>
     </nav>
+    <a href="#catalog" class="nav-button">Jelajahi Mobil ↗</a>
   </header>
 
   <main>
-    <section class="hero" id="hero">
-      <p class="eyebrow">THE BEST OR NOTHING</p>
-      <h1>Temukan Mercedes-Benz Impian Anda</h1>
-      <p>Perpaduan kemewahan, performa, dan teknologi modern.</p>
-      <a href="#catalog" class="primary-button">Jelajahi Koleksi</a>
+    <section class="hero" id="home">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">THE BEST OR NOTHING</p>
+        <h1>Kemewahan dalam<br>Setiap Perjalanan.</h1>
+        <p class="hero-description">
+          Temukan perpaduan desain elegan, teknologi inovatif,
+          dan performa khas Mercedes-Benz.
+        </p>
+        <a href="#catalog" class="primary-button">Temukan Mobil Impian ↗</a>
+      </div>
+      <div class="hero-caption">MERCEDES-BENZ · DRIVE YOUR AMBITION</div>
     </section>
 
     <section class="catalog section" id="catalog">
       <div class="section-heading">
-        <p class="eyebrow">OUR COLLECTION</p>
-        <h2>Koleksi Mercedes-Benz</h2>
-        <p>Pilih kendaraan yang sesuai dengan gaya Anda.</p>
+        <div>
+          <p class="eyebrow">OUR COLLECTION</p>
+          <h2>Temukan Mobil Pilihan</h2>
+          <p class="muted">Pilih kendaraan yang sesuai dengan gaya hidupmu.</p>
+        </div>
+        <div class="api-status" id="api-status">
+          <span class="status-dot"></span>
+          Menyiapkan data...
+        </div>
       </div>
+
+      <div class="catalog-tools">
+        <input id="search-input" type="search"
+          placeholder="Cari nama mobil atau tipe..."
+          aria-label="Cari mobil">
+
+        <select id="type-filter" aria-label="Filter tipe mobil">
+          <option value="all">Semua tipe</option>
+          <option value="Sedan">Sedan</option>
+          <option value="SUV">SUV</option>
+          <option value="Coupe">Coupe</option>
+          <option value="Electric">Electric</option>
+        </select>
+
+        <select id="sort-filter" aria-label="Urutkan harga">
+          <option value="default">Urutkan harga</option>
+          <option value="low">Harga terendah</option>
+          <option value="high">Harga tertinggi</option>
+        </select>
+      </div>
+
+      <p class="api-note" id="api-note">
+        Data katalog contoh ditampilkan di bawah.
+      </p>
 
       <div class="car-grid" id="car-grid"></div>
+      <p id="empty-message" class="empty-message hidden">
+        Mobil tidak ditemukan. Coba kata kunci atau tipe lain.
+      </p>
     </section>
 
-    <section class="transaction section hidden" id="transaction">
-      <div class="section-heading">
-        <p class="eyebrow">YOUR NEXT JOURNEY</p>
-        <h2>Formulir Pemesanan</h2>
-        <p>Lengkapi data berikut untuk konsultasi atau pemesanan.</p>
+    <section class="booking section" id="booking">
+      <div class="booking-intro">
+        <p class="eyebrow">PERSONAL CONSULTATION</p>
+        <h2>Mulai Perjalanan<br>Bersama Kami.</h2>
+        <p>
+          Isi formulir untuk mengajukan konsultasi atau pemesanan.
+          Tim kami dapat menindaklanjuti kebutuhan kendaraanmu.
+        </p>
+        <div class="contact-feature">
+          <span>01</span>
+          <div><strong>Pilih kendaraan</strong><p>Tentukan model yang kamu inginkan.</p></div>
+        </div>
+        <div class="contact-feature">
+          <span>02</span>
+          <div><strong>Isi data pemesan</strong><p>Lengkapi informasi untuk simulasi pemesanan.</p></div>
+        </div>
+        <div class="contact-feature">
+          <span>03</span>
+          <div><strong>Periksa ringkasan</strong><p>Pastikan data sudah benar sebelum dikirim.</p></div>
+        </div>
       </div>
 
-      <div class="transaction-layout">
-        <div class="selected-car" id="selected-car">
-          <img id="summary-image" src="" alt="Mobil pilihan">
-          <div class="selected-car-content">
-            <p class="eyebrow">MOBIL PILIHAN</p>
-            <h3 id="summary-car"></h3>
-            <p id="summary-description"></p>
-            <p class="price" id="summary-price"></p>
-          </div>
+      <form id="booking-form" class="booking-form">
+        <h3>Form Pemesanan Mobil</h3>
+        <p class="muted form-subtitle">Lengkapi kolom berikut dengan benar.</p>
+
+        <label for="buyer-name">Nama lengkap</label>
+        <input id="buyer-name" name="name" type="text"
+          placeholder="Masukkan nama lengkap" required minlength="3">
+
+        <label for="buyer-email">Alamat email</label>
+        <input id="buyer-email" name="email" type="email"
+          placeholder="nama@email.com" required>
+
+        <label for="buyer-phone">Nomor telepon</label>
+        <input id="buyer-phone" name="phone" type="tel"
+          placeholder="Contoh: 081234567890" required minlength="8">
+
+        <label for="car-choice">Pilihan mobil</label>
+        <select id="car-choice" name="car" required>
+          <option value="">Pilih mobil</option>
+        </select>
+
+        <label for="order-type">Jenis permintaan</label>
+        <select id="order-type" name="orderType" required>
+          <option value="Konsultasi">Konsultasi</option>
+          <option value="Test drive">Permintaan test drive</option>
+          <option value="Pemesanan">Pemesanan</option>
+        </select>
+
+        <label for="payment-method">Preferensi pembayaran</label>
+        <select id="payment-method" name="payment" required>
+          <option value="Belum ditentukan">Belum ditentukan</option>
+          <option value="Tunai">Tunai</option>
+          <option value="Kredit">Kredit</option>
+        </select>
+
+        <label for="buyer-message">Catatan (opsional)</label>
+        <textarea id="buyer-message" name="message" rows="3"
+          placeholder="Tulis kebutuhan atau pertanyaanmu..."></textarea>
+
+        <div class="order-summary" id="order-summary">
+          <div><span>Mobil</span><strong id="summary-car">Belum dipilih</strong></div>
+          <div><span>Estimasi harga</span><strong id="summary-price">-</strong></div>
+          <div><span>Permintaan</span><strong id="summary-type">Konsultasi</strong></div>
         </div>
 
-        <form id="transaction-form">
-          <label for="buyer-name">Nama Lengkap</label>
-          <input type="text" id="buyer-name" required placeholder="Masukkan nama Anda">
-
-          <label for="buyer-email">Email</label>
-          <input type="email" id="buyer-email" required placeholder="nama@email.com">
-
-          <label for="buyer-phone">Nomor Telepon</label>
-          <input type="tel" id="buyer-phone" required placeholder="08xxxxxxxxxx">
-
-          <label for="car-choice">Pilih Kendaraan</label>
-          <select id="car-choice" required></select>
-
-          <label for="order-type">Jenis Layanan</label>
-          <select id="order-type" required>
-            <option value="Konsultasi">Konsultasi kendaraan</option>
-            <option value="Test Drive">Permintaan test drive</option>
-            <option value="Pemesanan">Pemesanan kendaraan</option>
-          </select>
-
-          <label for="payment-method">Preferensi Pembayaran</label>
-          <select id="payment-method" required>
-            <option value="Belum ditentukan">Belum ditentukan</option>
-            <option value="Tunai">Tunai</option>
-            <option value="Kredit">Kredit</option>
-          </select>
-
-          <button type="submit" class="primary-button full-button">
-            Kirim Permintaan
-          </button>
-
-          <p class="form-note">
-            Formulir ini merupakan simulasi dan tidak mengirim data ke server.
-          </p>
-          <p id="transaction-feedback" role="status"></p>
-          <button type="button" id="back-button" class="secondary-button">
-            Kembali ke Koleksi
-          </button>
-        </form>
-      </div>
+        <button class="primary-button submit-button" type="submit">
+          Kirim Permintaan ↗
+        </button>
+        <p class="form-disclaimer">
+          Demo pembelajaran: data tidak dikirim ke server dan bukan transaksi nyata.
+        </p>
+        <div id="form-result" class="form-result hidden" role="status"></div>
+      </form>
     </section>
   </main>
 
-  <footer>
-    <p>Mercedes-Benz Luxury Collection</p>
-    <p>Experience elegance. Drive excellence.</p>
+  <footer class="footer">
+    <a href="#home" class="logo">MERCEDES<span>-BENZ</span></a>
+    <p>Elegance. Innovation. Performance.</p>
+    <small>© 2026 Mercedes-Benz Store — Proyek demo pembelajaran.</small>
   </footer>
 
-  <script src="script.js"></script>
+  <div id="toast" class="toast" role="status"></div>
 </body>
 </html>
